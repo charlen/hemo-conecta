@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage
+.nyc_output
+
+# Production builds
+dist/
+dist-ssr/
+*.tgz
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.pnpm-store/
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs
+*.log
+
+# Docker
+docker-compose.override.yml
+
+# Vite
+vite.config.*.ts
+
+# TypeScript
+*.tsbuildinfo
