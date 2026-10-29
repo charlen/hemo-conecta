@@ -23,7 +23,7 @@ export function ScreeningPage() {
     if (idx > 0) {
       const prev = perguntasTriagem[idx - 1]
       const valor = respostas[prev.id]
-      const ctx = { ...respostas, sexo: state.sexo }
+      const ctx = { ...respostas, sexo: respostas.sexo || state.sexo }
       if (prev.validar) {
         const res = prev.validar(valor, ctx)
         if (!res.valido) {
@@ -35,7 +35,7 @@ export function ScreeningPage() {
 
   if (inelegivel) {
     return (
-      <HeroStepTemplate step={3} total={4} title="Triagem interrompida">
+      <HeroStepTemplate step={2} total={3} title="Triagem interrompida">
         <div className="space-y-6">
           <p className="text-xl text-slate-800">Você não está elegível no momento.</p>
           <p className="text-lg text-slate-700">{inelegivel}</p>
@@ -62,7 +62,7 @@ export function ScreeningPage() {
     }
     const novo = { ...respostas, [pergunta.id]: selected }
     setRespostas(novo)
-    const ctx = { ...novo, sexo: state.sexo }
+    const ctx = { ...novo, sexo: novo.sexo || state.sexo }
     if (pergunta.validar) {
       const res = pergunta.validar(selected, ctx)
       if (!res.valido) {
@@ -71,6 +71,7 @@ export function ScreeningPage() {
       }
     }
     const map: Record<string, keyof typeof state> = {
+      sexo: 'sexo',
       idade: 'idade',
       peso: 'peso',
       ultimaDoacao: 'ultimaDoacaoDias',
@@ -88,7 +89,7 @@ export function ScreeningPage() {
   }
 
   return (
-    <HeroStepTemplate step={3} total={4} title="Triagem">
+    <HeroStepTemplate step={2} total={3} title="Triagem">
       <div className="space-y-8">
         <p className="text-slate-600 text-xl">Pergunta {idx + 1} de {totalPerguntas}</p>
         <h3 className="text-2xl font-bold">{pergunta.texto}</h3>

@@ -39,7 +39,7 @@ src/
 
 ## Fluxo de trabalho
 - Fluxo guiado por `FlowContext` e `useFlow` para admissão de doadores
-- Jornada: `WelcomePage` → `EligibilityPage` → `ScreeningPage` → `ResultPage`
+- Jornada: `WelcomePage` → `ScreeningPage` → `ResultPage`
 - `WelcomePage` landing de captação com layout duas colunas
 - Triagem em funil de descarte rápido, uma pergunta por vez, com interrupção imediata em caso de inelegibilidade
 - **Filtro inicial biológico**: sexo biológico define intervalo regulatório de doação

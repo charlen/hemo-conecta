@@ -18,7 +18,7 @@ export function ResultPage() {
   const completo = nome && cepCidade && telefone
 
   return (
-    <HeroPageTemplate step={4} total={4} title="Resultado da triagem" subtitle="Parabéns, você está elegível">
+    <HeroPageTemplate step={3} total={3} title="Resultado da triagem" subtitle="Parabéns, você está elegível">
       <div className="space-y-8">
         <p className="text-xl text-slate-700">
           Você passou por todas as etapas de triagem com sucesso. Agora precisamos de seus dados para contato.
