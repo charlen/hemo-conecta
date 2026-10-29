@@ -14,7 +14,7 @@ export function HeroPageTemplate({ step, total, title, subtitle, children }: Her
     <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row">
       {/* Painel visual esquerdo - ocupa tela toda */}
       <div className="hidden md:flex w-5/12 relative overflow-hidden min-h-screen">
-        <img src="/assets/hero.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
+        <img src="/hero.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/70 to-slate-950/20" />
         <div className="relative z-10 flex flex-col justify-between p-10 lg:p-16 text-white h-full">
           <div>
