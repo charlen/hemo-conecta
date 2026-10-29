@@ -7,7 +7,7 @@ services:
     networks:
       - hemo-conecta-network
     ports:
-      - "8050:80"
+      - "8051:80"
     environment:
       VITE_API_URL: http://backend:8080
 

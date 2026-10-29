@@ -3,7 +3,7 @@ import { useFlow } from '../hooks/useFlow'
 import { HeroPageTemplate } from '../components/templates/HeroPageTemplate'
 import { Button } from '../components/atoms/Button'
 import { ButtonRow } from '../components/molecules/ButtonRow'
-import { perguntasTriagem, mensagensInterrupcao } from '../mocks/eligibility'
+import { perguntasTriagem, mensagensInterrupcao, RespostasTriagem, SexoBiologico } from '../mocks/eligibility'
 
 export function ScreeningPage() {
   const { state, updateTriagem, nextStep, prevStep } = useFlow()
@@ -23,7 +23,7 @@ export function ScreeningPage() {
     if (idx > 0) {
       const prev = perguntasTriagem[idx - 1]
       const valor = respostas[prev.id]
-      const ctx = { ...respostas, sexo: respostas.sexo || state.sexo }
+      const ctx = { ...respostas, sexo: (respostas.sexo as SexoBiologico | undefined) || state.sexo } as unknown as RespostasTriagem
       if (prev.validar) {
         const res = prev.validar(valor, ctx)
         if (!res.valido) {
@@ -62,7 +62,7 @@ export function ScreeningPage() {
     }
     const novo = { ...respostas, [pergunta.id]: selected }
     setRespostas(novo)
-    const ctx = { ...novo, sexo: novo.sexo || state.sexo }
+    const ctx = { ...novo, sexo: (novo.sexo as SexoBiologico | undefined) || state.sexo } as unknown as RespostasTriagem
     if (pergunta.validar) {
       const res = pergunta.validar(selected, ctx)
       if (!res.valido) {
@@ -90,7 +90,7 @@ export function ScreeningPage() {
 
   return (
     <HeroPageTemplate step={2} total={3} title="Triagem" subtitle="Responda com calma, uma pergunta por vez">
-      <div className="space-y-8">
+      <div className="space-y-8 h-full flex flex-col">
         <p className="text-slate-600 text-xl">Pergunta {idx + 1} de {totalPerguntas}</p>
         <h3 className="text-2xl font-bold">{pergunta.texto}</h3>
         {pergunta.tipo === 'radio' && pergunta.opcoes && (

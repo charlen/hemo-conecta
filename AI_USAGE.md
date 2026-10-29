@@ -24,3 +24,37 @@ Especificação detalhada de regras de triagem: sexo biológico, idade 16-69, pe
 ---
 
 **Resumo geral**
+
+---
+
+## Fase 2 - Correção de tipagem em ScreeningPage
+
+**O que foi pedido**
+Corrigir erro TypeScript em src/pages/ScreeningPage.tsx linha 28: Argument of type '{ sexo: {} | undefined; }' is not assignable to parameter of type 'RespostasTriagem'.
+
+**Como foi pedido**
+Report de erro de compilação com mensagem de incompatibilidade de tipos entre sexo derivado de respostas Record<string, unknown> e tipo SexoBiologico | undefined esperado pelo validador de triagem.
+
+**O que foi entregue**
+- Import de RespostasTriagem e SexoBiologico em ScreeningPage.tsx
+- Cast seguro do contexto para RespostasTriagem nas duas construções de ctx (useEffect de validação e handleContinuar)
+- Tipagem explícita de respostas.sexo como SexoBiologico | undefined antes do fallback para state.sexo
+- Build e lint validados sem erros
+- CHANGELOG.md e AI_USAGE.md atualizados conforme governança
+
+---
+
+## Fase 3 - Responsividade de botões em mobile
+
+**O que foi pedido**
+Em mobile fazer os botões avançar e voltar ocuparem a largura toda, manter o continuar em cima e o voltar embaixo.
+
+**Como foi pedido**
+Solicitação de ajuste de UI para mobile: botões full width em pilha vertical com ordem continuar → voltar.
+
+**O que foi entregue**
+- ButtonRow.tsx alterado para `flex flex-col-reverse sm:flex-row sm:justify-between gap-4 ...`
+- Em mobile, layout coluna reversa garante continuar no topo e voltar embaixo; itens esticam para largura total por flex stretch
+- Desktop mantém linha com justify-between
+- Build e lint validados sem erros
+- CHANGELOG.md e AI_USAGE.md atualizados conforme governança

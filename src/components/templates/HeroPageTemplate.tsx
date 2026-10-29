@@ -31,10 +31,10 @@ export function HeroPageTemplate({ step, total, title, subtitle, children }: Her
       </div>
 
       {/* Conteúdo direito ocupando todo o espaço */}
-      <div className="flex-1 bg-white">
-        <div className="h-full p-8 md:p-12 lg:p-16">
+      <div className="flex-1 bg-white min-h-screen flex flex-col">
+        <div className="flex-1 p-8 md:p-12 lg:p-16">
           <StepTemplate step={step} total={total} title={title}>
-            <div className="space-y-8">
+            <div className="space-y-8 h-full flex flex-col">
               {children}
             </div>
           </StepTemplate>
