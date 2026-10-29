@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useFlow } from '../hooks/useFlow'
-import { HeroStepTemplate } from '../components/templates/HeroStepTemplate'
+import { HeroPageTemplate } from '../components/templates/HeroPageTemplate'
 import { Button } from '../components/atoms/Button'
 import { ButtonRow } from '../components/molecules/ButtonRow'
 import { perguntasTriagem, mensagensInterrupcao } from '../mocks/eligibility'
@@ -35,7 +35,7 @@ export function ScreeningPage() {
 
   if (inelegivel) {
     return (
-      <HeroStepTemplate step={2} total={3} title="Triagem interrompida">
+      <HeroPageTemplate step={2} total={3} title="Triagem interrompida" subtitle="Avaliação de elegibilidade">
         <div className="space-y-6">
           <p className="text-xl text-slate-800">Você não está elegível no momento.</p>
           <p className="text-lg text-slate-700">{inelegivel}</p>
@@ -44,7 +44,7 @@ export function ScreeningPage() {
             <Button variant="secondary" onClick={prevStep}>Voltar</Button>
           </ButtonRow>
         </div>
-      </HeroStepTemplate>
+      </HeroPageTemplate>
     )
   }
 
@@ -89,7 +89,7 @@ export function ScreeningPage() {
   }
 
   return (
-    <HeroStepTemplate step={2} total={3} title="Triagem">
+    <HeroPageTemplate step={2} total={3} title="Triagem" subtitle="Responda com calma, uma pergunta por vez">
       <div className="space-y-8">
         <p className="text-slate-600 text-xl">Pergunta {idx + 1} de {totalPerguntas}</p>
         <h3 className="text-2xl font-bold">{pergunta.texto}</h3>
@@ -106,9 +106,9 @@ export function ScreeningPage() {
           <input type="number" value={selected ?? ''} onChange={e=>setSelected(Number(e.target.value))} className="w-full p-4 text-xl border-2 rounded-2xl" />
         )}
         {pergunta.tipo === 'boolean' && (
-          <div className="flex gap-4">
-            <Button variant="secondary" onClick={()=>setSelected(true)}>Sim</Button>
-            <Button variant="secondary" onClick={()=>setSelected(false)}>Não</Button>
+          <div className="grid grid-cols-2 gap-4">
+            <button type="button" onClick={()=>setSelected(true)} className={`min-h-[72px] rounded-2xl border-2 ${selected===true?'border-primary':'border-slate-300'} hover:border-primary text-xl font-semibold`}>Sim</button>
+            <button type="button" onClick={()=>setSelected(false)} className={`min-h-[72px] rounded-2xl border-2 ${selected===false?'border-primary':'border-slate-300'} hover:border-primary text-xl font-semibold`}>Não</button>
           </div>
         )}
         <ButtonRow>
@@ -116,7 +116,7 @@ export function ScreeningPage() {
           <Button variant="primary" onClick={handleContinuar} disabled={selected === undefined || selected === ''}>Continuar</Button>
         </ButtonRow>
       </div>
-    </HeroStepTemplate>
+    </HeroPageTemplate>
   )
 }
 
